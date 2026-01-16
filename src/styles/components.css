@@ -208,20 +208,21 @@
 
 .action-buttons {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
 }
 
 .action-btn {
     background: var(--color-pure-paper);
     border: 0.5px solid var(--color-border);
     border-radius: var(--radius-sm);
-    padding: var(--space-lg);
+    padding: var(--space-md);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
     transition: all var(--transition-normal);
+    min-height: 85px;
 }
 
 .action-btn:hover {
@@ -231,17 +232,96 @@
 }
 
 .action-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .action-label {
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-align: center;
+    line-height: 1.2;
 }
 
+/* ========================================
+   CUSTOM ACTION INPUT
+   ======================================== */
+.custom-action-container {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, rgba(232, 222, 208, 0.3) 0%, rgba(196, 160, 136, 0.2) 100%);
+    border: 1px solid var(--color-coral);
+    border-radius: var(--radius-md);
+}
+
+.custom-action-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-soft-charcoal);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.custom-action-input-group {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.custom-action-input {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    border: 1.5px solid var(--color-border-light);
+    border-radius: var(--radius-sm);
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.custom-action-input:focus {
+    outline: none;
+    border-color: var(--color-mint);
+    box-shadow: 0 0 0 3px rgba(143, 168, 150, 0.1);
+}
+
+.custom-action-input::placeholder {
+    color: var(--color-muted-text);
+    opacity: 0.6;
+}
+
+.btn-custom-action {
+    padding: var(--space-sm) var(--space-lg);
+    background: linear-gradient(135deg, var(--color-mint) 0%, var(--color-success) 100%);
+    color: white;
+    border: 1.5px solid var(--color-sage-green);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-custom-action:hover {
+    background: linear-gradient(135deg, var(--color-success) 0%, var(--color-sage-green) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(143, 168, 150, 0.3);
+}
+
+.btn-custom-action:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   ACTION LOG
+   ======================================== */
 .action-log {
     background: var(--color-pure-paper);
     border: 0.5px solid var(--color-border);
@@ -613,6 +693,7 @@
     display: flex;
     align-items: center;
     padding: var(--space-3xl) 0;
+    margin-bottom: 3rem;
 }
 
 .scroll-graphic {
@@ -629,19 +710,23 @@
     background: rgba(248, 245, 242, 0.9);
     border: 0.5px solid var(--color-border);
     border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
 }
 
 .scroll-heading {
     font-family: var(--font-serif);
     font-size: 1.75rem;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-3xl);
     line-height: var(--line-height-tight);
+    display: block;
 }
 
 .scroll-body {
     font-family: var(--font-body);
     font-size: 1.125rem;
     line-height: var(--line-height-loose);
+    display: block;
 }
 
 .scroll-body strong {

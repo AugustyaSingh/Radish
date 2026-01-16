@@ -1,0 +1,403 @@
+/* ========================================
+   MUTED RETRO GAME UI
+   "Middle Ground" - Fun but not Neon
+   8-bit aesthetic with sophisticated palette
+   ======================================== */
+
+/* ========================================
+   BACKGROUND - CALM SKY
+   ======================================== */
+
+body {
+    background: linear-gradient(to bottom, #8BA0B3 0%, #8BA0B3 70%, #C4D4D8 70%, #C4D4D8 100%);
+    position: relative;
+    color: #4A4A4A;
+}
+
+/* Subtle pixel texture overlay instead of bright clouds */
+body::before {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 8px 8px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Muted Block Ground */
+.footer {
+    background:
+        repeating-linear-gradient(90deg,
+            #A67C6D 0px,
+            #A67C6D 40px,
+            #C69C8E 40px,
+            #C69C8E 80px);
+    border-top: 4px solid #4A4A4A;
+}
+
+/* ========================================
+   PIXEL-PERFECT BORDERS (SOFTENED)
+   ======================================== */
+
+.section-wrapper {
+    border: 4px solid #4A4A4A;
+    box-shadow:
+        0 0 0 4px #EBEBEB,
+        0 0 0 8px #4A4A4A,
+        8px 8px 0 0 rgba(74, 74, 74, 0.2);
+    background: #FDFBF7;
+    /* Off-white paper */
+    image-rendering: pixelated;
+}
+
+/* Muted Gold Headers */
+.section-header {
+    background: linear-gradient(to bottom, #D4C596 0%, #D4C596 50%, #B8A97A 50%, #B8A97A 100%);
+    border: 4px solid #4A4A4A;
+    border-radius: 0;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    color: #4A4A4A;
+    text-shadow: 2px 2px 0 #FFF;
+    font-weight: 700;
+}
+
+.helper-text {
+    color: #5C5C5C;
+    font-family: 'Inter', sans-serif;
+    /* Keep easy to read font for body */
+}
+
+/* ========================================
+   MUTED BRICK BUTTONS
+   ======================================== */
+
+.action-btn {
+    background:
+        linear-gradient(to right, #A67C6D 0%, #A67C6D 50%, #C69C8E 50%, #C69C8E 100%),
+        linear-gradient(to bottom, #C69C8E 0%, #C69C8E 50%, #A67C6D 50%, #A67C6D 100%);
+    background-size: 8px 100%, 100% 8px;
+    background-repeat: repeat-x, repeat-y;
+    border: 4px solid #4A4A4A;
+    box-shadow:
+        inset 2px 2px 0 rgba(255, 255, 255, 0.2),
+        inset -2px -2px 0 rgba(0, 0, 0, 0.1),
+        4px 4px 0 0 #4A4A4A;
+    border-radius: 4px;
+    transition: all 0.1s ease;
+    color: #FFF;
+    text-shadow: 1px 1px 0 #4A4A4A;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        inset 2px 2px 0 rgba(255, 255, 255, 0.2),
+        inset -2px -2px 0 rgba(0, 0, 0, 0.1),
+        6px 6px 0 0 #4A4A4A;
+}
+
+.action-btn:active {
+    transform: translateY(2px);
+    box-shadow:
+        inset 2px 2px 0 rgba(0, 0, 0, 0.1),
+        2px 2px 0 0 #4A4A4A;
+}
+
+/* Muted Rose for sustainable actions */
+.action-btn[data-action="used-mug"],
+.action-btn[data-action="recycled"],
+.action-btn[data-action="composted"] {
+    background:
+        radial-gradient(circle at 30% 30%, #C17A6F, #A6645A),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 10px, transparent 10px, transparent 20px);
+    border: 4px solid #4A4A4A;
+}
+
+/* Muted Sage/Gold for energy actions */
+.action-btn[data-action="lights-off"],
+.action-btn[data-action="bike-commute"] {
+    background:
+        linear-gradient(45deg, #8FA896 25%, #D4C18A 25%, #D4C18A 50%, #8FA896 50%, #8FA896 75%, #D4C18A 75%);
+    background-size: 20px 20px;
+    border: 4px solid #4A4A4A;
+}
+
+/* ========================================
+   MUTED COIN COUNTER
+   ======================================== */
+
+.stat-counter {
+    font-family: 'Press Start 2P', monospace;
+    color: #8C7B3C;
+    /* Muted Bronze */
+    text-shadow: none;
+    background: #F4F1EA;
+    padding: 0.5rem 1rem;
+    border: 3px solid #D4C596;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 rgba(212, 197, 150, 0.4);
+    display: inline-block;
+}
+
+.stat-counter::before {
+    content: '🪙';
+    margin-right: 0.5rem;
+    filter: sepia(0.5);
+    /* Mute the emoji */
+}
+
+/* ========================================
+   SOFT POWER-UPD BADGE
+   ======================================== */
+
+.achievement-badge {
+    background:
+        linear-gradient(45deg, #D4C596 0%, #E8DEBC 50%, #D4C596 100%);
+    border: 3px solid #8C7B3C;
+    box-shadow:
+        0 0 0 2px #F4F1EA,
+        0 0 0 4px #8C7B3C;
+    color: #5C5024;
+    text-transform: uppercase;
+    animation: gentlePulse 2s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* ========================================
+   RETRO TERMINAL LOG (Dark Solarized style)
+   ======================================== */
+
+.action-log {
+    background: #2E3436;
+    border: 4px solid #D3D7CF;
+    box-shadow: 0 0 0 4px #2E3436;
+    color: #D3D7CF;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.75rem;
+    padding: 1rem;
+}
+
+.log-title {
+    color: #FCE94F;
+    /* Not too bright yellow */
+    text-shadow: none;
+    border-bottom: 2px dashed #888A85;
+    padding-bottom: 0.5rem;
+}
+
+.action-entry {
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 4px solid #8AE234;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    color: #FFF;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 40px;
+    /* Ensure visibility */
+}
+
+.action-entry-time {
+    opacity: 0.7;
+    margin-right: 1rem;
+}
+
+.action-entry-text {
+    flex-grow: 1;
+    text-align: right;
+    font-weight: bold;
+    color: #FCE94F;
+}
+
+/* ========================================
+   PIXEL HEARTS (Muted)
+   ======================================== */
+
+.progress-bar {
+    background: #D3D7CF;
+    border: 3px solid #4A4A4A;
+    box-shadow: 4px 4px 0 #4A4A4A;
+    height: 24px;
+    border-radius: 0;
+}
+
+.progress-fill {
+    background:
+        repeating-linear-gradient(90deg,
+            #d16666 0px,
+            #d16666 12px,
+            #a94442 12px,
+            #a94442 24px);
+}
+
+.progress-fill::after {
+    background: none;
+    opacity: 0.5;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 4px 4px;
+}
+
+/* ========================================
+   ? BLOCK CUSTOM INPUT (Pastel)
+   ======================================== */
+
+.custom-action-container {
+    background:
+        linear-gradient(to bottom, #E8D595 0%, #C4B06E 100%);
+    border: 4px solid #4A4A4A;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.1),
+        4px 4px 0 #4A4A4A;
+    position: relative;
+    border-radius: 4px;
+}
+
+.custom-action-container::before {
+    content: '?';
+    position: absolute;
+    top: 50%;
+    left: -50px;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    font-family: 'Press Start 2P', monospace;
+    color: #4A4A4A;
+    text-shadow: 2px 2px 0 #FFF;
+    animation: questionBounce 2s ease-in-out infinite;
+}
+
+/* ========================================
+   PIPE SCROLL CARDS (Sage Green)
+   ======================================== */
+
+.scroll-text {
+    background:
+        linear-gradient(to right, #8FA896 0%, #A3BCA9 50%, #8FA896 100%);
+    border: 4px solid #4A4A4A;
+    box-shadow:
+        inset 4px 4px 0 rgba(255, 255, 255, 0.2),
+        inset -4px -4px 0 rgba(0, 0, 0, 0.1),
+        6px 6px 0 #4A4A4A;
+    border-radius: 8px;
+    /* Less rounded */
+    color: #FFF;
+}
+
+.scroll-heading {
+    text-shadow: 2px 2px 0 #4A4A4A;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem !important;
+    /* Force smaller size for pixel font */
+    line-height: 1.6 !important;
+}
+
+.scroll-body {
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn-primary {
+    background: linear-gradient(to bottom, #C17A6F 0%, #A6645A 100%);
+    border: 4px solid #4A4A4A;
+    color: white;
+    text-shadow: 1px 1px 0 #4A4A4A;
+    box-shadow:
+        inset 2px 2px 0 rgba(255, 255, 255, 0.2),
+        4px 4px 0 #4A4A4A;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to bottom, #CC857A 0%, #B06E64 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        inset 2px 2px 0 rgba(255, 255, 255, 0.2),
+        6px 6px 0 #4A4A4A;
+}
+
+.btn-secondary {
+    background: linear-gradient(to bottom, #77909C 0%, #546E7A 100%);
+    border: 4px solid #4A4A4A;
+}
+
+/* ========================================
+   DISPOSAL GUIDE ITEMS
+   ======================================== */
+
+.disposal-item {
+    background: #555753;
+    border: 2px solid #888A85;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #FFF;
+}
+
+.disposal-item:hover {
+    background: #777975;
+    border-color: #FCE94F;
+    transform: translateX(4px);
+}
+
+.disposal-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+    width: 40px;
+    text-align: center;
+}
+
+.disposal-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.8rem;
+    margin: 0 0 0.25rem 0;
+    color: #FCE94F;
+    line-height: 1.4;
+}
+
+.disposal-scientific {
+    font-style: italic;
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.disposal-category {
+    margin-left: auto;
+    font-size: 0.7rem;
+    background: #2E3436;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #888A85;
+}

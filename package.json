@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/press-start-2p": "^5.2.7",
+    "@fontsource/space-mono": "^5.2.9",
     "@tailwindcss/postcss": "^4.1.18",
     "autoprefixer": "^10.4.23",
     "framer-motion": "^12.26.2",

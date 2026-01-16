@@ -3,19 +3,61 @@
 // D3.js visualizations with scroll-triggered transitions
 // ========================================
 
-// Mock campus data
-const campusData = {
+import { getActionStats } from './action-logger.js';
+import { apiClient } from './api-client.js';
+
+// Default data structure to prevent crashes
+const DEFAULT_DATA = {
     totalActions: 1240,
     sustainableActions: 868,
     impactActions: 372,
-    waterSaved: 4000, // gallons
+    waterSaved: 4000,
+    mugPercentage: 70,
     commonActions: {
         coffee: { total: 520, withMug: 364, withoutMug: 156 },
         printing: { total: 200, digital: 140, printed: 60 },
         bottles: { total: 180, refilled: 160, disposable: 20 },
         disposal: { total: 340, correct: 210, incorrect: 130 }
+    },
+    realStats: {
+        personalActions: 0,
+        waterSavedPersonal: 0,
+        mugUsed: 0,
+        bottlesRefilled: 0,
+        recycled: 0,
+        composted: 0
     }
 };
+
+let campusData = { ...DEFAULT_DATA };
+
+// Async update of data
+async function updateCampusData() {
+    try {
+        const community = await apiClient.getCommunityStats();
+        if (!community) return;
+
+        // Update campusData with real values from API
+        // This is a simplification; in a real app we'd map fields precisely
+        campusData.totalActions = community.totalActions;
+
+        // Use simplified ratios for demo if detailed breakdown missing
+        campusData.sustainableActions = Math.round(community.totalActions * 0.7);
+        campusData.impactActions = community.totalActions - campusData.sustainableActions;
+
+        if (community.impact) {
+            campusData.waterSaved = community.impact.waterSaved * 10; // Scale for community
+        }
+
+        // Re-generate particles if data changed
+        // (Optional: call init function again or update visualization)
+    } catch (e) {
+        console.warn('Failed to load campus data, using defaults', e);
+    }
+}
+
+// Refresh data on each init
+// (Handled by initCampusInsights)
 
 // Generate particle data for beeswarm visualization
 function generateParticleData(count, sustainable, width = 800, height = 600) {
@@ -51,12 +93,16 @@ function stopSimulation() {
 
 // Initialize D3 visualization
 export function initCampusInsights() {
+    // Refresh data from database
+    updateCampusData();
+
     svg = d3.select('#viz-canvas');
     if (!svg.node()) return;
 
     // Get dimensions
-    const container = svg.node().parentElement;
-    width = container.clientWidth;
+    // Get dimensions from the sticky container
+    const container = d3.select('.sticky-viz').node();
+    width = container ? container.clientWidth : 800;
     height = 600;
 
     svg.attr('viewBox', `0 0 ${width} ${height}`);
@@ -128,17 +174,16 @@ function showMorningPulse() {
     circles.enter()
         .append('circle')
         .attr('r', 2.5)
-        .attr('fill', d => d.sustainable ? '#86A38B' : '#E29578')
-        .attr('opacity', 0)
+        .attr('fill', d => d.sustainable ? '#2B9348' : '#D94632')
+        .attr('opacity', 0) // Hidden - no animation
         .merge(circles)
         .transition()
         .duration(1000)
-        .attr('opacity', 0.8);
+        .attr('opacity', 0); // Keep hidden
 
+    // Remove the animation loop
     activeSimulation.on('tick', () => {
-        svg.selectAll('circle')
-            .attr('cx', d => d.x + Math.sin(Date.now() / 500) * 0.5)
-            .attr('cy', d => d.y + Math.cos(Date.now() / 500) * 0.5);
+        // No visual update needed since circles are hidden
     });
 
     circles.exit()
@@ -147,24 +192,8 @@ function showMorningPulse() {
         .attr('opacity', 0)
         .remove();
 
-    // Add decorative concentric circles in background
-    const concentricData = [100, 150, 200];
-    svg.selectAll('.concentric')
-        .data(concentricData)
-        .enter()
-        .append('circle')
-        .attr('class', 'concentric')
-        .attr('cx', width / 2)
-        .attr('cy', height / 2)
-        .attr('r', 0)
-        .attr('fill', 'none')
-        .attr('stroke', '#86A38B')
-        .attr('stroke-width', 0.5)
-        .attr('opacity', 0)
-        .transition()
-        .duration(1500)
-        .attr('r', d => d)
-        .attr('opacity', 0.2);
+    // Remove decorative circles as well
+    svg.selectAll('.concentric').remove();
 }
 
 // Step 1: Divergence - Sort into two columns
@@ -195,7 +224,7 @@ function showDivergence() {
         .attr('y1', height * 0.2)
         .attr('x2', width / 2)
         .attr('y2', height * 0.8)
-        .attr('stroke', '#2C2C2C')
+        .attr('stroke', '#1A1A1A')
         .attr('stroke-width', 0.5)
         .attr('stroke-dasharray', '5,5')
         .attr('opacity', 0)
@@ -265,7 +294,7 @@ function showDisposalParadox() {
         svg.selectAll('circle')
             .attr('cx', d => d.x)
             .attr('cy', d => d.y)
-            .attr('fill', d => incorrectParticles.includes(d) ? '#E29578' : '#86A38B');
+            .attr('fill', d => incorrectParticles.includes(d) ? '#D94632' : '#2B9348');
     });
 
     // Draw bin outline
@@ -277,7 +306,7 @@ function showDisposalParadox() {
         .attr('width', binWidth)
         .attr('height', binHeight)
         .attr('fill', 'none')
-        .attr('stroke', '#2C2C2C')
+        .attr('stroke', '#1A1A1A')
         .attr('stroke-width', 1)
         .attr('rx', 8)
         .attr('opacity', 0)
@@ -299,7 +328,7 @@ function showDisposalParadox() {
         .attr('cx', d => d.x)
         .attr('cy', d => d.y)
         .attr('r', 0)
-        .attr('fill', '#E29578')
+        .attr('fill', '#D94632')
         .attr('opacity', 0.4)
         .transition()
         .delay((d, i) => i * 200)
@@ -335,7 +364,7 @@ function showCumulativeRipple() {
         .duration(2000)
         .attr('cx', (d, i) => landmarkPoints[i].x)
         .attr('cy', (d, i) => landmarkPoints[i].y)
-        .attr('fill', '#86A38B')
+        .attr('fill', '#2B9348')
         .attr('opacity', 0.9)
         .attr('r', 2.5);
 
@@ -365,7 +394,7 @@ function showCumulativeRipple() {
         .attr('class', 'spiral-path')
         .attr('d', spiralLine(spiralData))
         .attr('fill', 'none')
-        .attr('stroke', '#86A38B')
+        .attr('stroke', '#2B9348')
         .attr('stroke-width', 1)
         .attr('opacity', 0)
         .attr('stroke-dasharray', '3,3')
@@ -390,7 +419,7 @@ function showCumulativeRipple() {
         .attr('cy', d => d.y)
         .attr('rx', 0)
         .attr('ry', 0)
-        .attr('fill', '#86A38B')
+        .attr('fill', '#2B9348')
         .attr('opacity', 0.5)
         .transition()
         .delay(1500)

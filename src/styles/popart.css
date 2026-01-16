@@ -1,0 +1,371 @@
+/* ========================================
+   COLORFUL POP ART BACKGROUNDS & ELEMENTS
+   Fun, vibrant, playful design
+   ======================================== */
+
+/* ========================================
+   COLORFUL GEOMETRIC BACKGROUND
+   ======================================== */
+
+body {
+    background: linear-gradient(135deg, #FFF8E7 0%, #FFE8D0 50%, #FFD4B3 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Floating geometric shapes */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::before {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--color-mint), transparent);
+    top: -200px;
+    left: -200px;
+    animation: float 20s ease-in-out infinite;
+}
+
+body::after {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--color-lavender), transparent);
+    bottom: -150px;
+    right: -150px;
+    animation: float 15s ease-in-out infinite reverse;
+}
+
+/* Add more decorative circles */
+.section-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, var(--color-coral), transparent);
+    top: 50%;
+    right: -125px;
+    opacity: 0.1;
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+/* ========================================
+   POP ART SECTION DECORATIONS
+   ======================================== */
+
+.section-wrapper {
+    position: relative;
+    background: white;
+    border: 4px solid var(--color-ink-black);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Comic book style speech bubbles */
+.section-header::before {
+    content: '💬';
+    position: absolute;
+    left: -3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+/* Colorful corner accents */
+.section-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 80px 80px 0;
+    border-color: transparent var(--color-achievement) transparent transparent;
+    opacity: 0.3;
+}
+
+/* ========================================
+   VIBRANT ACTION BUTTONS
+   More saturated colors
+   ======================================== */
+
+.action-btn {
+    border: 3px solid var(--color-ink-black);
+    box-shadow: 4px 4px 0 var(--color-ink-black);
+    position: relative;
+    overflow: visible;
+}
+
+.action-btn:hover {
+    box-shadow: 6px 6px 0 var(--color-ink-black);
+}
+
+.action-btn:active {
+    box-shadow: 2px 2px 0 var(--color-ink-black);
+}
+
+/* Add sparkle effects */
+.action-btn::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover::after {
+    opacity: 1;
+    transform: scale(1) rotate(20deg);
+}
+
+/* ========================================
+   DOTTED HALFTONE PATTERN
+   Comic book style
+   ======================================== */
+
+.gradient-bg {
+    background:
+        radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        var(--gradient-earth);
+    background-size: 20px 20px, 100% 100%;
+    background-position: 0 0, 0 0;
+}
+
+/* ========================================
+   COLORFUL ZIGZAG DIVIDERS
+   ======================================== */
+
+.section-wrapper+.section-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(135deg, transparent 10px, var(--color-mint) 10px, var(--color-mint) 20px, transparent 20px),
+        linear-gradient(-135deg, transparent 10px, var(--color-coral) 10px, var(--color-coral) 20px, transparent 20px);
+    background-size: 40px 20px;
+    background-position: 0 0, 20px 0;
+}
+
+/* ========================================
+   STARBURST BADGE BACKGROUND
+   ======================================== */
+
+.achievement-badge {
+    position: relative;
+}
+
+.achievement-badge::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background:
+        linear-gradient(0deg, transparent 40%, var(--color-gold) 50%, transparent 60%),
+        linear-gradient(60deg, transparent 40%, var(--color-gold) 50%, transparent 60%),
+        linear-gradient(120deg, transparent 40%, var(--color-gold) 50%, transparent 60%);
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: starburstRotate 4s linear infinite;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+@keyframes starburstRotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ========================================
+   COLORFUL SCROLL INDICATORS
+   ======================================== */
+
+.scroll-prompt span {
+    display: inline-block;
+    animation: colorBounce 2s ease-in-out infinite;
+    background: linear-gradient(45deg, var(--color-mint), var(--color-coral), var(--color-lavender), var(--color-mint));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: colorShift 3s ease infinite, bounce 2s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* ========================================
+   SPEECH BUBBLE CARDS
+   ======================================== */
+
+.scroll-text {
+    position: relative;
+    background: white;
+    border: 3px solid var(--color-ink-black);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Speech bubble tail */
+.scroll-text::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 20px 15px 0;
+    border-color: transparent white transparent transparent;
+}
+
+.scroll-text::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 16px 21px 16px 0;
+    border-color: transparent var(--color-ink-black) transparent transparent;
+}
+
+/* ========================================
+   RETRO STRIPES BACKGROUND
+   ======================================== */
+
+.hero-section {
+    background:
+        repeating-linear-gradient(45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 212, 179, 0.1) 20px,
+            rgba(255, 212, 179, 0.1) 40px),
+        linear-gradient(to bottom, #FFF8E7, white);
+    border-bottom: 6px solid var(--color-ink-black);
+    position: relative;
+}
+
+/* ========================================
+   CONFETTI DOTS
+   ======================================== */
+
+@keyframes confettiFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-100vh) rotate(360deg);
+    }
+}
+
+/* Add confetti particles */
+.section-wrapper:nth-child(odd)::after {
+    content: '•';
+    position: absolute;
+    color: var(--color-coral);
+    font-size: 2rem;
+    top: 20%;
+    left: 10%;
+    animation: confettiFloat 10s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+.section-wrapper:nth-child(even)::after {
+    content: '✦';
+    position: absolute;
+    color: var(--color-mint);
+    font-size: 1.5rem;
+    top: 60%;
+    right: 15%;
+    animation: confettiFloat 12s ease-in-out infinite;
+    animation-delay: 2s;
+    opacity: 0.3;
+}
+
+/* ========================================
+   GRID PATTERN OVERLAY
+   ======================================== */
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ========================================
+   RAINBOW PROGRESS BAR
+   ======================================== */
+
+.progress-fill {
+    background: linear-gradient(90deg,
+            var(--color-mint) 0%,
+            var(--color-sky) 25%,
+            var(--color-lavender) 50%,
+            var(--color-coral) 75%,
+            var(--color-achievement) 100%);
+}
+
+/* ========================================
+   COLORFUL FOCUS STATES
+   ======================================== */
+
+input:focus,
+textarea:focus,
+button:focus {
+    outline: 3px solid var(--color-coral);
+    outline-offset: 3px;
+}
+
+.custom-action-input:focus {
+    border-color: var(--color-mint);
+    box-shadow: 0 0 0 4px rgba(143, 168, 150, 0.2), 0 4px 12px rgba(143, 168, 150, 0.3);
+}

@@ -10,32 +10,53 @@
   /* Background Tones */
   --color-warm-paper: #F8F5F2;
   --color-pure-paper: #FFFFFF;
-  
+
   /* Text Tones */
   --color-soft-charcoal: #2C2C2C;
   --color-ink-black: #1A1A1A;
   --color-muted-text: #555555;
-  
+
   /* Semantic Colors */
   --color-sage-green: #86A38B;
   --color-periwinkle-blue: #92A8D1;
   --color-terra-cotta: #E29578;
-  
+
+  /* Darker, Calmer Palette - Muted Tones */
+  --color-peach: #C4A088;
+  --color-mint: #8FA896;
+  --color-lavender: #A8A0BC;
+  --color-coral: #C17A6F;
+  --color-rose: #C89BA3;
+  --color-cream: #E8DED0;
+  --color-sky: #8CA3B8;
+
+  /* Gamification Colors - Muted */
+  --color-gold: #C4A358;
+  --color-achievement: #D4C18A;
+  --color-success: #8FA896;
+  --color-energy: #D4A574;
+
+  /* Calmer Gradients */
+  --gradient-warm: linear-gradient(135deg, #E8DED0 0%, #C4A088 50%, #C89BA3 100%);
+  --gradient-cool: linear-gradient(135deg, #8FA896 0%, #8CA3B8 50%, #A8A0BC 100%);
+  --gradient-sunset: linear-gradient(180deg, #C4A088 0%, #C17A6F 50%, #A8A0BC 100%);
+  --gradient-earth: linear-gradient(135deg, #F8F5F2 0%, #E8DED0 50%, #D4C5B0 100%);
+
   /* Utility Colors */
   --color-border: #2C2C2C;
   --color-border-light: rgba(44, 44, 44, 0.2);
-  
+
   /* Typography */
   --font-serif: 'Lora', Georgia, serif;
   --font-sans: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
   --font-body: 'Inter', -apple-system, sans-serif;
-  
+
   /* Line Heights (Breathing Room) */
   --line-height-tight: 1.2;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.6;
   --line-height-loose: 1.8;
-  
+
   /* Spacing Scale */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -44,11 +65,13 @@
   --space-xl: 3rem;
   --space-2xl: 4rem;
   --space-3xl: 6rem;
-  
+
   /* Border Radius (Slight Roundness) */
   --radius-sm: 4px;
   --radius-md: 8px;
-  
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
   /* Transitions (Calm, No Bounce) */
   --transition-fast: 0.2s ease-in-out;
   --transition-normal: 0.3s ease-in-out;
@@ -83,7 +106,12 @@ body {
    ======================================== */
 
 /* Headings - Serif for Academic/Journal Feel */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: 500;
   line-height: var(--line-height-tight);
@@ -359,6 +387,7 @@ hr {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -370,6 +399,7 @@ hr {
     opacity: 0;
     transform: translateX(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -380,6 +410,7 @@ hr {
   from {
     top: 0;
   }
+
   to {
     top: 100%;
   }
@@ -401,12 +432,12 @@ hr {
     --space-3xl: 3rem;
     --space-2xl: 2rem;
   }
-  
+
   .container,
   .container-wide {
     padding: 0 var(--space-md);
   }
-  
+
   .section-wrapper {
     padding: var(--space-2xl) 0;
   }
