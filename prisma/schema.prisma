@@ -8,35 +8,65 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  role      String   @default("STUDENT")
-  level     Int      @default(1)
-  xp        Int      @default(0)
-  streak    Int      @default(0)
-  classId   String?
-  class     Class?   @relation(fields: [classId], references: [id])
-  actions   Action[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+  id               String      @id @default(cuid())
+  email            String      @unique
+  name             String?
+  bio              String?
+  avatar           String?     @default("/avatars/radish-1.png")
+  
+  // Gamification Stats
+  role             String      @default("USER")
+  level            Int         @default(1)
+  xp               Int         @default(0)
+  streak           Int         @default(0)
+  lastActionDate   DateTime?
+  
+  // Environmental Impact Stats
+  totalCarbonSaved Float       @default(0)
+  totalWaterSaved  Float       @default(0)
+  totalWasteSaved  Float       @default(0)
 
-model Class {
-  id        String   @id @default(cuid())
-  name      String
-  code      String   @unique
-  teacherId String
-  students  User[]
-  createdAt DateTime @default(now())
+  // Relations
+  actions          Action[]
+  insights         AIInsight[]
+  
+  // Social (Simple follow system)
+  following        Follows[]   @relation("follower")
+  followers        Follows[]   @relation("following")
+
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
 }
 
 model Action {
   id        String   @id @default(cuid())
-  type      String
+  type      String   // RECYCLE, COMPOST, REFILL, TRANSIT
   points    Int
-  metadata  String?
+  
+  // Impact Metadata
+  carbon    Float    @default(0)
+  water     Float    @default(0)
+  waste     Float    @default(0)
+  
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
+}
+
+model AIInsight {
+  id        String   @id @default(cuid())
+  type      String   // TIP, FACT, MISSION
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Follows {
+  followerId  String
+  followingId String
+  follower    User   @relation("follower", fields: [followerId], references: [id])
+  following   User   @relation("following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
 }

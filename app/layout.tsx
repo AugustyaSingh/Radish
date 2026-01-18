@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
+});
+
+const spaceGrotesk = Space_Grotesk({
+    subsets: ["latin"],
+    variable: "--font-space",
+});
 
 export const metadata: Metadata = {
     title: "Radish | Gamified Sustainability",
-    description: "Level up your impact on the planet.",
+    description: "Your gamified journey to a sustainable future. Track your eco-actions, earn XP, and compete with friends.",
+    keywords: ["sustainability", "eco-friendly", "gamification", "recycling", "carbon footprint"],
+    authors: [{ name: "Radish Team" }],
 };
 
 export default function RootLayout({
@@ -17,8 +26,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={cn(inter.variable, spaceGrotesk.variable, "antialiased bg-stone-50 text-stone-900 min-h-screen")}>
+        <html lang="en" className="dark" suppressHydrationWarning>
+            <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`} suppressHydrationWarning>
                 {children}
             </body>
         </html>
