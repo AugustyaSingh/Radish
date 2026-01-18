@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("STUDENT")
+  level     Int      @default(1)
+  xp        Int      @default(0)
+  streak    Int      @default(0)
+  classId   String?
+  class     Class?   @relation(fields: [classId], references: [id])
+  actions   Action[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Class {
+  id        String   @id @default(cuid())
+  name      String
+  code      String   @unique
+  teacherId String
+  students  User[]
+  createdAt DateTime @default(now())
+}
+
+model Action {
+  id        String   @id @default(cuid())
+  type      String
+  points    Int
+  metadata  String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
