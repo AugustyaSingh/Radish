@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Botanical Paper Color Palette */
+    --background: 45 30% 94%;
+    --foreground: 30 10% 20%;
+
+    --card: 40 10% 35%;
+    --card-foreground: 45 30% 94%;
+
+    --popover: 40 10% 30%;
+    --popover-foreground: 45 30% 94%;
+
+    /* Olive/Khaki - Primary */
+    --primary: 55 40% 45%;
+    --primary-foreground: 30 10% 15%;
+
+    /* Dusty Rose/Terracotta */
+    --secondary: 15 35% 55%;
+    --secondary-foreground: 45 30% 94%;
+
+    --muted: 40 15% 85%;
+    --muted-foreground: 30 15% 45%;
+
+    /* Sage Green accent */
+    --accent: 90 25% 50%;
+    --accent-foreground: 30 10% 15%;
+
+    /* Terracotta for destructive */
+    --destructive: 15 50% 45%;
+    --destructive-foreground: 45 30% 94%;
+
+    --border: 55 30% 40%;
+    --input: 40 15% 85%;
+    --ring: 55 40% 45%;
+
+    --radius: 0px;
+  }
+
+  .dark {
+    --background: 45 30% 94%;
+    --foreground: 30 10% 20%;
+    --card: 40 10% 35%;
+    --card-foreground: 45 30% 94%;
+    --popover: 40 10% 30%;
+    --popover-foreground: 45 30% 94%;
+    --primary: 55 40% 45%;
+    --primary-foreground: 30 10% 15%;
+    --secondary: 15 35% 55%;
+    --secondary-foreground: 45 30% 94%;
+    --muted: 40 15% 85%;
+    --muted-foreground: 30 15% 45%;
+    --accent: 90 25% 50%;
+    --accent-foreground: 30 10% 15%;
+    --destructive: 15 50% 45%;
+    --destructive-foreground: 45 30% 94%;
+    --border: 55 30% 40%;
+    --input: 40 15% 85%;
+    --ring: 55 40% 45%;
+    --radius: 0px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'VT323', monospace;
+    image-rendering: pixelated;
+  }
+}
+
+/* Pixel Font Classes */
+.font-pixel {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.font-retro {
+  font-family: 'VT323', monospace;
+}
+
+/* Paper Border */
+.paper-border {
+  border: 3px solid hsl(var(--border));
+  box-shadow:
+    3px 3px 0 0 hsl(var(--border)),
+    -1px -1px 0 0 hsl(var(--muted));
+}
+
+.paper-border-primary {
+  border: 3px solid hsl(var(--primary));
+  box-shadow: 3px 3px 0 0 hsl(var(--primary) / 0.7);
+}
+
+/* Header Box - Olive/Khaki */
+.header-box {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: 3px solid hsl(var(--border));
+}
+
+/* Card Box - Charcoal Gray */
+.field-card {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 3px solid hsl(var(--card) / 0.8);
+  box-shadow: 3px 3px 0 0 hsl(30 10% 25%);
+}
+
+/* Action Cards with muted colors */
+.action-card {
+  background: hsl(var(--muted));
+  border: 3px solid hsl(var(--border) / 0.5);
+  box-shadow: 3px 3px 0 0 hsl(var(--muted-foreground) / 0.3);
+}
+
+.action-card:hover {
+  background: hsl(var(--primary) / 0.2);
+  border-color: hsl(var(--primary));
+}
+
+/* Retro Button - Paper Style */
+.retro-btn {
+  @apply font-pixel text-xs uppercase tracking-wider;
+  border: 3px solid hsl(var(--border));
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.1s;
+  box-shadow: 3px 3px 0 0 hsl(var(--border));
+}
+
+.retro-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 0 hsl(var(--border));
+}
+
+.retro-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.retro-btn-filled {
+  @apply retro-btn;
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  border-color: hsl(var(--accent) / 0.8);
+  box-shadow: 3px 3px 0 0 hsl(90 25% 35%);
+}
+
+/* Paper Background Pattern */
+.paper-bg {
+  background-color: hsl(var(--background));
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.1) 1px, transparent 1px);
+  background-size: 100% 24px;
+}
+
+/* Dotted Border like stitching */
+.stitch-border {
+  border: 2px dashed hsl(var(--secondary));
+}
+
+/* Notebook lines */
+.notebook-lines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 80px;
+  bottom: 0;
+  width: 2px;
+  background: hsl(var(--secondary) / 0.3);
+}
+
+/* Yellow highlight text */
+.highlight-text {
+  color: hsl(55 80% 50%);
+  text-shadow: 1px 1px 0 hsl(30 10% 20%);
+}
+
+/* Warm Glow */
+.warm-glow {
+  text-shadow:
+    0 0 5px hsl(var(--primary) / 0.5),
+    0 0 10px hsl(var(--primary) / 0.3);
+}
+
+/* Retro Progress Bar */
+.retro-progress {
+  height: 16px;
+  background: hsl(var(--muted));
+  border: 2px solid hsl(var(--border));
+}
+
+.retro-progress-fill {
+  height: 100%;
+  background: repeating-linear-gradient(45deg,
+      hsl(var(--primary)),
+      hsl(var(--primary)) 8px,
+      hsl(var(--primary) / 0.7) 8px,
+      hsl(var(--primary) / 0.7) 16px);
+}
+
+/* Blinking Animation */
+@keyframes blink {
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+/* Pixel Shake */
+@keyframes pixel-shake {
+
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  25% {
+    transform: translate(-2px, 2px);
+  }
+
+  50% {
+    transform: translate(2px, -2px);
+  }
+
+  75% {
+    transform: translate(-2px, -2px);
+  }
+}
+
+.pixel-shake:hover {
+  animation: pixel-shake 0.3s infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border: 2px solid hsl(var(--border) / 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border: 2px solid hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent));
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.4);
+  color: hsl(var(--foreground));
+}
+
+/* Input Fields - Paper style */
+.paper-input {
+  background: hsl(var(--background));
+  border: 2px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  font-family: 'VT323', monospace;
+}
+
+.paper-input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+/* Color palette cards */
+.color-tan {
+  background: hsl(30 30% 70%);
+}
+
+.color-rose {
+  background: hsl(15 35% 55%);
+}
+
+.color-sage {
+  background: hsl(90 20% 60%);
+}
+
+.color-blue {
+  background: hsl(200 30% 70%);
+}
+
+.color-orange {
+  background: hsl(25 50% 55%);
+}
+
+.color-yellow {
+  background: hsl(45 60% 65%);
+}
