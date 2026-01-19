@@ -9,7 +9,7 @@
 
 > **Making sustainability fun.** A retro-themed, gamified platform that transforms everyday eco-actions into rewarding experiences—because saving the planet should feel like playing a game.
 
-**[🌐 Try the Live Demo →](http://localhost:3000)**
+**[🌐 Try the Live Demo →](radish-l8ml.vercel.app)**
 
 ---
 
@@ -152,7 +152,7 @@ cp .env.example .env
 npm run dev
 ```
 
-**Open [http://localhost:3000](http://localhost:3000)** 🎉
+**Open [http://localhost:3000](radish-l8ml.vercel.app)** 🎉
 
 ---
 
