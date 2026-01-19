@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radish · Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/styles/design-system.css">
+    <link rel="stylesheet" href="/src/styles/components.css">
+    <link rel="stylesheet" href="/src/styles/enhancements.css">
+    <link rel="stylesheet" href="/src/styles/mario-pudding.css"> <!-- Mario Theme -->
+    <link rel="stylesheet" href="/src/styles/gamification.css"> <!-- Gamification -->
+    <link rel="stylesheet" href="/src/styles/fun-ui.css"> <!-- Fun Animations -->
+    <link rel="stylesheet" href="/src/styles/retro-game.css"> <!-- Retro Game UI -->
+    <link rel="stylesheet" href="/src/styles/radish-loader.css"> <!-- Loader -->
+    <link rel="stylesheet" href="/src/styles/cute-mascots.css"> <!-- Cute Mascots -->
+    <link rel="stylesheet" href="/src/styles/mario-title.css"> <!-- Mario Title -->
+    <link rel="stylesheet" href="/src/styles/daily-report.css"> <!-- Daily Report -->
+    <link rel="stylesheet" href="/src/styles/main.css">
+
+    <!-- Scripts -->
+    <script src="/src/js/radish-loader.js"></script> <!-- Loader Logic -->
+    <script src="/src/js/cute-mascots.js"></script> <!-- Mascots Logic -->
+    <script type="module" src="/src/js/daily-report.js"></script> <!-- Daily Report -->
+    <style>
+        /* Dashboard specific tweaks */
+        body {
+            padding-top: 2rem;
+        }
+
+        .hero-section {
+            min-height: auto;
+            padding: 2rem 0;
+            text-align: left;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Minimal Header for Dashboard -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="page-title"><a href="/" style="text-decoration: none; color: inherit;">Radish</a></h1>
+                <p class="subtitle">Mindful Campus Living</p>
+            </div>
+
+            <!-- Notification System -->
+            <div class="notification-card">
+                <div class="card-header">
+                    <span class="icon-marker">†</span>
+                    <h3>Daily Intention Setting</h3>
+                </div>
+                <p class="helper-text">Set a gentle reminder to reflect on today's activities.</p>
+                <div class="time-picker-group">
+                    <input type="time" id="notification-time" class="time-input" value="09:00">
+                    <button id="set-reminder-btn" class="btn-primary">Set Reminder</button>
+                </div>
+                <p id="reminder-status" class="status-text"></p>
+            </div>
+        </div>
+    </header>
+
+    <!-- To-Do Transformation Section -->
+    <section id="todo-transformation" class="section-wrapper">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Daily Refinement</h2>
+                <p class="section-date" id="current-date"></p>
+            </div>
+
+            <div class="manuscript-editor">
+                <div class="input-area">
+                    <label for="todo-input" class="input-label">What do you intend to accomplish today?</label>
+                    <textarea id="todo-input" class="todo-textarea"
+                        placeholder="Example:&#10;- Print lab report&#10;- Get lunch&#10;- Buy new pens&#10;- Research in library"
+                        rows="8"></textarea>
+                    <button id="transform-btn" class="btn-primary">Refine My Intentions</button>
+                </div>
+
+                <div id="transformation-result" class="transformation-result hidden">
+                    <div class="scanning-line"></div>
+                    <div id="transformed-tasks" class="transformed-tasks"></div>
+                    <button id="accept-intentions-btn" class="btn-secondary">Accept These Intentions</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Logger Section -->
+    <section id="action-logger" class="section-wrapper gradient-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Today's Actions</h2>
+                <p class="helper-text">Log what you do throughout the day. Each action reveals its hidden impact on
+                    campus resources, emissions, and collective wellbeing.</p>
+            </div>
+
+            <div class="action-logger-grid">
+                <div class="action-buttons">
+                    <button class="action-btn" data-action="ordered-food">
+                        <span class="action-icon">🍽️</span>
+                        <span class="action-label">Ordered Food</span>
+                    </button>
+                    <button class="action-btn" data-action="printed">
+                        <span class="action-icon">📄</span>
+                        <span class="action-label">Printed</span>
+                    </button>
+                    <button class="action-btn" data-action="used-mug">
+                        <span class="action-icon">☕</span>
+                        <span class="action-label">Used My Mug</span>
+                    </button>
+                    <button class="action-btn" data-action="refilled-bottle">
+                        <span class="action-icon">💧</span>
+                        <span class="action-label">Refilled Bottle</span>
+                    </button>
+                    <button class="action-btn" data-action="disposed-waste">
+                        <span class="action-icon">🗑️</span>
+                        <span class="action-label">Disposed Waste</span>
+                    </button>
+                    <button class="action-btn" data-action="digital-cleanup">
+                        <span class="action-icon">📧</span>
+                        <span class="action-label">Digital Cleanup</span>
+                    </button>
+                    <button class="action-btn" data-action="recycled">
+                        <span class="action-icon">♻️</span>
+                        <span class="action-label">Recycled</span>
+                    </button>
+                    <button class="action-btn" data-action="composted">
+                        <span class="action-icon">🌱</span>
+                        <span class="action-label">Composted</span>
+                    </button>
+                    <button class="action-btn" data-action="carpooled">
+                        <span class="action-icon">🚗</span>
+                        <span class="action-label">Carpooled</span>
+                    </button>
+                    <button class="action-btn" data-action="used-stairs">
+                        <span class="action-icon">🚶</span>
+                        <span class="action-label">Used Stairs</span>
+                    </button>
+                    <button class="action-btn" data-action="lights-off">
+                        <span class="action-icon">💡</span>
+                        <span class="action-label">Turned Off Lights</span>
+                    </button>
+                    <button class="action-btn" data-action="brought-container">
+                        <span class="action-icon">🥡</span>
+                        <span class="action-label">Brought Container</span>
+                    </button>
+                    <button class="action-btn" data-action="bike-commute">
+                        <span class="action-icon">🚲</span>
+                        <span class="action-label">Biked to Campus</span>
+                    </button>
+                    <button class="action-btn" data-action="meal-prep">
+                        <span class="action-icon">🍱</span>
+                        <span class="action-label">Brought Lunch</span>
+                    </button>
+                </div>
+
+                <!-- Custom Action Input -->
+                <div class="custom-action-container">
+                    <label for="custom-action-input" class="custom-action-label">Or add your own action:</label>
+                    <div class="custom-action-input-group">
+                        <input type="text" id="custom-action-input" class="custom-action-input"
+                            placeholder="e.g., Donated old clothes, Planted a tree..." maxlength="50" />
+                        <button id="add-custom-action" class="btn-custom-action">Log It</button>
+                    </div>
+                </div>
+
+                <div id="action-log" class="action-log">
+                    <h3 class="log-title">Activity Log</h3>
+                    <div id="action-entries" class="action-entries"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disposal Field Guide Section -->
+    <section id="disposal-guide" class="section-wrapper">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Disposal Field Guide</h2>
+                <p class="helper-text">A botanical index for waste. Identify your material and find its proper
+                    destination. Not sure if something is recyclable, compostable, or landfill? Use the search below or
+                    let our identification tool guide you through material types, Campus-specific bin locations, and
+                    contamination tips.</p>
+            </div>
+
+            <div class="field-guide">
+                <div class="search-container">
+                    <input type="text" id="disposal-search" class="botanical-search"
+                        placeholder="Search for an item (e.g., coffee cup, plastic bottle)...">
+                </div>
+
+                <div class="guide-options">
+                    <button id="dichotomous-key-btn" class="btn-secondary">Help Me Identify</button>
+                </div>
+
+                <div id="disposal-results" class="disposal-results"></div>
+
+                <!-- Dichotomous Key Modal -->
+                <div id="dichotomous-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <button class="modal-close" id="close-modal">&times;</button>
+                        <h3 class="modal-title">Material Identification</h3>
+                        <div id="key-question" class="key-question"></div>
+                        <div id="key-options" class="key-options"></div>
+                        <div id="key-verdict" class="key-verdict hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Insights (Scrollytelling) Section -->
+    <section id="campus-insights" class="section-wrapper scrollytelling-section gradient-bg">
+        <div class="container-wide">
+            <div class="section-header centered">
+                <h2 class="section-title">Anonymous Campus Insights</h2>
+                <p class="helper-text">A collective portrait of our environmental decisions. No names. No rankings. Just
+                    patterns.</p>
+            </div>
+
+            <div class="scrollytelling-container pudding-stage">
+                <!-- Sticky Graphic Background -->
+                <div class="sticky-viz">
+                    <svg id="viz-canvas" width="100%" height="100%"></svg>
+                </div>
+
+                <!-- Scrolling Text Steps -->
+                <div class="scroll-article">
+                    <!-- Step 0: Morning Pulse -->
+                    <div class="scroll-step" data-step="0">
+                        <h3 class="scroll-heading">8:15 AM: The Campus Wakes Up</h3>
+                        <p class="scroll-body">Right now, <strong>1,240</strong> "Morning Intents" have been set. The
+                            most common intention? Coffee.</p>
+                    </div>
+
+                    <!-- Step 1: Divergence -->
+                    <div class="scroll-step" data-step="1">
+                        <h3 class="scroll-heading">The Choice Divergence</h3>
+                        <p class="scroll-body"><strong>70%</strong> of us remembered our mugs today. The remaining 30%
+                            created enough waste to fill the library's foyer halfway to the ceiling.</p>
+                    </div>
+
+                    <!-- Step 2: Disposal Paradox -->
+                    <div class="scroll-step" data-step="2">
+                        <h3 class="scroll-heading">The Disposal Paradox</h3>
+                        <p class="scroll-body">The most confused item on campus? The <em>Compostable Fork</em>. 60% of
+                            them ended up in the landfill bin today because the 'Compost' sign was obscured by a
+                            backpack.</p>
+                    </div>
+
+                    <!-- Step 3: Cumulative Ripple -->
+                    <div class="scroll-step" data-step="3">
+                        <h3 class="scroll-heading">The Cumulative Ripple</h3>
+                        <p class="scroll-body">We are not individual actors. Together, our small "Radish" moments saved
+                            <strong>4,000 gallons</strong> of water today. That's enough to keep the campus fountain
+                            running for three days straight.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Reveal Overlay -->
+    <div id="impact-overlay" class="impact-overlay hidden">
+        <div class="footnote-card" id="impact-card">
+            <button class="card-close">&times;</button>
+            <div class="impact-content">
+                <div class="impact-icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" stroke="#86A38B" stroke-width="1.5" fill="none" />
+                        <text x="20" y="27" text-anchor="middle" font-family="Lora" font-size="20"
+                            fill="#86A38B">i</text>
+                    </svg>
+                </div>
+                <h4 class="impact-title" id="impact-title"></h4>
+                <div class="impact-body" id="impact-body"></div>
+                <a href="#citations" class="impact-citation">View Source</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">Radish is a tool for awareness, not judgment. Every choice is a learning moment.</p>
+            <p class="footer-attribution">Built with care for mindful campus living.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
+    <script type="module" src="/src/dashboard.js"></script>
+    <script src="/src/js/interactive-bg.js"></script>
+</body>
+
+</html>

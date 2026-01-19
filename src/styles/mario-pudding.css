@@ -1,0 +1,262 @@
+/* ==========================================================================
+   SUPER RADISH WORLD (PUDDING EDITION)
+   A sophisticated retro-modern theme blending 8-bit nostalgia with editorial design.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Typography & Assets
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    /* --- Muted Mario Palette --- */
+    /* Reimagined primary colors: saturated but distinct, not neon */
+    --color-mario-red: #D94632;
+    /* Brick Red */
+    --color-luigi-green: #2B9348;
+    /* Pipe Green */
+    --color-peach-pink: #F4A4A4;
+    /* Soft Pink */
+    --color-sky-blue: #6CA6D9;
+    /* NES Sky */
+    --color-coin-gold: #E5B305;
+    /* Gold */
+
+    /* Backgrounds */
+    --color-paper: #F9F7F5;
+    /* Editorial Off-White */
+    --color-ink: #1A1A1A;
+    /* Near Black */
+    --color-dim: rgba(26, 26, 26, 0.05);
+
+    /* Overrides for Existing Variables */
+    --bg-color: var(--color-paper);
+    --text-primary: var(--color-ink);
+    --text-secondary: #4A4A4A;
+    --accent-color: var(--color-mario-red);
+    --font-heading: 'Press Start 2P', cursive;
+    --font-body: 'Space Mono', monospace;
+
+    /* Retro UI Variables */
+    --border-thick: 3px solid var(--color-ink);
+    --border-thin: 2px solid var(--color-ink);
+    --shadow-hard: 4px 4px 0px var(--color-ink);
+    --radius-hard: 0px;
+    /* Brutalist corners */
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Resets & Typography
+   -------------------------------------------------------------------------- */
+body {
+    background-color: var(--color-paper);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    /* Background pattern removed for cleaner look */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+h1 {
+    color: var(--color-mario-red);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+p,
+li,
+span {
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   3. "Message Box" Cards
+   -------------------------------------------------------------------------- */
+.card,
+.journal-entry,
+.summary-card,
+.verdict-card {
+    background: white;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
+    border-radius: var(--radius-hard);
+    padding: 24px;
+    position: relative;
+    transition: transform 0.1s ease;
+}
+
+.card:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0px var(--color-ink);
+}
+
+/* --------------------------------------------------------------------------
+   4. "Start Button" Interactions
+   -------------------------------------------------------------------------- */
+button,
+.action-btn,
+.nav-btn {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    background: var(--color-luigi-green);
+    color: white;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
+    border-radius: var(--radius-hard);
+    padding: 16px 24px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+button:hover,
+.action-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--color-ink);
+    background: #23803C;
+}
+
+button.secondary,
+.action-btn.secondary {
+    background: var(--color-sky-blue);
+}
+
+button.danger {
+    background: var(--color-mario-red);
+}
+
+/* --------------------------------------------------------------------------
+   5. Pudding-Style Scrollytelling overrides
+   -------------------------------------------------------------------------- */
+.pudding-stage {
+    position: relative;
+    /* Wrapper for sticky context */
+}
+
+.sticky-viz {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-paper);
+    /* Ensure background obscures previous content */
+}
+
+.scroll-article {
+    position: relative;
+    z-index: 10;
+    padding-bottom: 20vh;
+    /* Space at bottom */
+    margin-top: -80vh;
+    /* Pull content up to start scrolling over the first viz view */
+    pointer-events: none;
+    /* Let clicks pass through to viz if needed */
+}
+
+.scroll-step {
+    display: block;
+    /* Fix flex layout issue */
+    text-align: left;
+    border: var(--border-thick);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-hard);
+    margin: 0 auto 80vh auto;
+    padding: 2.5rem;
+    max-width: 500px;
+    opacity: 0.95;
+    pointer-events: auto;
+    /* Re-enable clicks on the cards themselves */
+    transition: transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.scroll-step.is-active {
+    transform: scale(1.05);
+    /* Slight pop when active */
+    opacity: 1;
+    border-color: var(--color-mario-red);
+}
+
+#scroll-container {
+    /* Deprecated in new layout */
+    border: none;
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. Form Elements
+   -------------------------------------------------------------------------- */
+input,
+textarea,
+select {
+    font-family: var(--font-body);
+    background: white;
+    border: var(--border-thin);
+    border-radius: 0;
+    padding: 12px;
+    box-shadow: 2px 2px 0px var(--color-dim);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-mario-red);
+    box-shadow: 4px 4px 0px var(--color-mario-red);
+}
+
+/* --------------------------------------------------------------------------
+   7. Special Components
+   -------------------------------------------------------------------------- */
+/* The "Bin" in disposal guide */
+.bin-verdict {
+    border: var(--border-thick);
+    background: var(--color-paper);
+}
+
+/* "Ink Blossom" replaced with "Pixel Garden" style borders */
+.canvas-container {
+    border: var(--border-thick);
+    background: #E0F0FF;
+    /* Sky blue tint for visualization areas */
+}
+
+/* Impact Reveal Cards */
+.impact-overlay {
+    background: rgba(0, 0, 0, 0.85);
+    /* Darker dim */
+    backdrop-filter: none;
+    /* Retro feel relies less on blur */
+}
+
+.impact-card {
+    border: 4px solid white;
+    background: var(--color-mario-red);
+    color: white;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.5);
+}
+
+.impact-card h3 {
+    color: var(--color-coin-gold);
+}
+
+/* Mobile Tweaks */
+@media (max-width: 768px) {
+    :root {
+        --border-thick: 2px solid var(--color-ink);
+        --shadow-hard: 2px 2px 0px var(--color-ink);
+    }
+}

@@ -1,0 +1,250 @@
+/* ========================================
+   UI ENHANCEMENTS - Better Contrast & Responsiveness
+   ======================================== */
+
+/* Improved text contrast for onboarding */
+.onboarding-container {
+    background: linear-gradient(135deg, #F8F5F2 0%, #EDE9E5 100%) !important;
+}
+
+.onboarding-section {
+    padding: clamp(1rem, 5vw, 3rem) !important;
+    opacity: 0.5 !important;
+}
+
+.onboarding-section.active {
+    opacity: 1 !important;
+}
+
+/* Better text visibility */
+.frontispiece-title {
+    color: #1A1A1A !important;
+    font-size: clamp(2.5rem, 8vw, 5rem) !important;
+}
+
+.frontispiece-subtitle {
+    color: #555555 !important;
+    font-weight: 500 !important;
+    font-size: clamp(0.625rem, 2vw, 0.75rem) !important;
+}
+
+.scroll-prompt {
+    color: #2C2C2C !important;
+    font-weight: 500 !important;
+    font-size: clamp(0.813rem, 2vw, 0.9375rem) !important;
+}
+
+.scroll-arrow {
+    color: #86A38B !important;
+}
+
+/* Philosophy section improvements */
+.philosophy-text {
+    background: rgba(255, 255, 255, 0.7) !important;
+    padding: clamp(1rem, 4vw, 2rem) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(10px) !important;
+    margin: clamp(1.5rem, 4vw, 3rem) 0 !important;
+}
+
+.philosophy-paragraph {
+    color: #1A1A1A !important;
+    font-size: clamp(1.125rem, 3vw, 1.5rem) !important;
+    font-weight: 400 !important;
+}
+
+.onboarding-question {
+    color: #1A1A1A !important;
+    font-size: clamp(1.25rem, 4vw, 1.75rem) !important;
+    font-weight: 500 !important;
+}
+
+/* Better card backgrounds */
+.intent-option {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.first-reveal {
+    background: rgba(146, 168, 209, 0.18) !important;
+    border: 1.5px solid #92A8D1 !important;
+    border-radius: 12px !important;
+    padding: clamp(1rem, 3vw, 1.5rem) !important;
+    box-shadow: 0 4px 12px rgba(146, 168, 209, 0.12) !important;
+}
+
+.reveal-text {
+    color: #1A1A1A !important;
+    font-size: clamp(1rem, 2.5vw, 1.125rem) !important;
+}
+
+/* Responsive fixes for content width */
+.onboarding-content {
+    max-width: 700px !important;
+    width: 100% !important;
+    padding: 0 clamp(0.75rem, 3vw, 1rem) !important;
+}
+
+.frontispiece-content {
+    max-width: 600px !important;
+    width: 100% !important;
+    padding: 0 clamp(0.75rem, 3vw, 1rem) !important;
+}
+
+/* Journal card improvements */
+.journal-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    padding: clamp(1.5rem, 4vw, 3rem) !important;
+    max-width: 500px !important;
+    width: 100% !important;
+}
+
+/* Mobile specific improvements */
+@media (max-width: 768px) {
+    .radish-illustration svg {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .intent-option {
+        padding: 1rem !important;
+        font-size: 1rem !important;
+    }
+
+    .intent-icon {
+        font-size: 1.5rem !important;
+    }
+
+    .time-dial {
+        width: 100% !important;
+        max-width: 200px !important;
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .philosophy-text {
+        padding: 1rem !important;
+    }
+
+    .intent-option {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 0.5rem !important;
+    }
+
+    .signature-input {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* Main app responsive improvements */
+.hero-content {
+    padding: 0 clamp(0.75rem, 3vw, 1rem) !important;
+}
+
+.notification-card {
+    border-radius: 12px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05) !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    padding: clamp(1rem, 4vw, 2rem) !important;
+}
+
+.action-btn {
+    border-radius: 12px !important;
+    min-height: clamp(80px, 20vw, 100px) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(134, 163, 139, 0.15) !important;
+}
+
+/* Better mobile action grid */
+@media (max-width: 768px) {
+    .action-logger-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    .action-log {
+        max-height: 300px !important;
+    }
+
+    .task-transformation-item {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .footnote-marker {
+        position: static !important;
+        display: block !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .disposal-results {
+        grid-template-columns: 1fr !important;
+    }
+
+    .scroll-graphic {
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-wrapper {
+        padding: 2rem 0 !important;
+    }
+
+    .container,
+    .container-wide {
+        padding: 0 0.75rem !important;
+    }
+
+    .action-buttons {
+        grid-template-columns: 1fr !important;
+    }
+
+    .action-btn {
+        padding: 0.75rem 1rem !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        min-height: 60px !important;
+    }
+
+    .action-label {
+        text-align: left !important;
+    }
+
+    .impact-overlay {
+        left: 0.75rem !important;
+        right: 0.75rem !important;
+        bottom: 0.75rem !important;
+        max-width: none !important;
+    }
+
+    .modal-content {
+        width: 95% !important;
+        padding: 1.5rem !important;
+    }
+}
+
+/* Smoother transitions everywhere */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+button:active {
+    transform: scale(0.98) !important;
+}
+
+/* Better focus states */
+*:focus-visible {
+    outline: 2px solid #86A38B !important;
+    outline-offset: 3px !important;
+}

@@ -1,0 +1,522 @@
+/* ========================================
+   ONBOARDING & REFLECTION STYLES
+   Scrollytelling experiences
+   ======================================== */
+
+/* ========================================
+   ONBOARDING CONTAINER
+   ======================================== */
+.onboarding-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    background: var(--gradient-earth);
+    z-index: 2000;
+    transition: opacity 0.5s ease-out;
+}
+
+.onboarding-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xl);
+    opacity: 0.3;
+    transition: opacity 0.8s ease-out;
+}
+
+.onboarding-section.active {
+    opacity: 1;
+}
+
+/* ========================================
+   FRONTISPIECE
+   ======================================== */
+.frontispiece {
+    text-align: center;
+}
+
+.frontispiece-content {
+    max-width: 500px;
+}
+
+.radish-illustration {
+    margin-bottom: var(--space-2xl);
+    animation: fadeIn 1s ease-out;
+}
+
+.radish-illustration svg {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+.frontispiece-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
+}
+
+.frontispiece-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-muted-text);
+    margin-bottom: var(--space-3xl);
+}
+
+.scroll-prompt {
+    margin-top: var(--space-3xl);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-muted-text);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+    display: block;
+    font-size: 1.5rem;
+    margin-top: var(--space-xs);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   PHILOSOPHY SECTION
+   ======================================== */
+.radish-corner-icon {
+    position: fixed;
+    top: var(--space-lg);
+    left: var(--space-lg);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.radish-corner-icon:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.onboarding-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.philosophy-text {
+    margin: var(--space-3xl) 0;
+}
+
+.philosophy-paragraph {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: var(--line-height-loose);
+    margin-bottom: var(--space-lg);
+    color: var(--color-ink-black);
+}
+
+/* ========================================
+   TACTILE INTERACTION
+   ======================================== */
+.onboarding-question {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    color: var(--color-ink-black);
+}
+
+.intent-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.intent-option {
+    background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-peach) 100%);
+    border: 1.5px solid var(--color-coral);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.intent-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.4) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.intent-option:hover::before {
+    opacity: 1;
+}
+
+.intent-option:hover {
+    border-color: var(--color-sage-green);
+    transform: translateX(8px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(255, 155, 133, 0.25);
+}
+
+.intent-option:active {
+    animation: celebrate 0.6s ease;
+}
+
+.intent-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.intent-label {
+    flex: 1;
+    font-weight: 500;
+}
+
+.first-reveal {
+    background: linear-gradient(135deg, rgba(184, 230, 213, 0.2) 0%, rgba(184, 212, 241, 0.2) 100%);
+    border: 2px solid var(--color-mint);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-top: var(--space-xl);
+    animation: fadeIn 0.5s ease-out, celebrate 0.6s ease;
+    box-shadow: 0 4px 16px rgba(184, 230, 213, 0.2);
+}
+
+.reveal-text {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-ink-black);
+    margin: 0;
+}
+
+/* ========================================
+   MORNING CHIME
+   ======================================== */
+.chime-icon {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.time-dial-container {
+    margin: var(--space-xl) 0;
+    text-align: center;
+}
+
+.time-dial {
+    font-size: 2rem;
+    text-align: center;
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    width: 200px;
+    margin: 0 auto var(--space-md);
+    display: block;
+}
+
+.time-caption {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--color-muted-text);
+}
+
+/* ========================================
+   JOURNAL OWNERSHIP
+   ======================================== */
+.journal-card {
+    background: linear-gradient(135deg, #FFFFFF 0%, var(--color-cream) 100%);
+    border: 2px solid var(--color-peach);
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(255, 212, 179, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.journal-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 212, 179, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.journal-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    margin-bottom: var(--space-lg);
+    color: var(--color-ink-black);
+}
+
+.signature-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-sm) 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--color-ink-black);
+    margin-bottom: var(--space-2xl);
+}
+
+.signature-input:focus {
+    outline: none;
+    border-bottom-color: var(--color-sage-green);
+}
+
+.signature-input::placeholder {
+    opacity: 0.3;
+}
+
+.journal-meta {
+    margin-bottom: var(--space-xl);
+}
+
+.campus-label {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-sage-green);
+    margin-bottom: var(--space-md);
+}
+
+.journal-disclaimer {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-muted-text);
+}
+
+/* ========================================
+   WELCOME LETTER (Empty State)
+   ======================================== */
+.welcome-letter {
+    background: var(--color-pure-paper);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xl);
+    margin-top: var(--space-2xl);
+    max-width: 600px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.letter-content {
+    position: relative;
+}
+
+.letter-greeting {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    margin-bottom: var(--space-md);
+}
+
+.letter-body {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: var(--line-height-loose);
+    margin-bottom: var(--space-md);
+}
+
+.letter-signature {
+    font-family: var(--font-serif);
+    font-style: italic;
+    margin-top: var(--space-lg);
+}
+
+.hand-stamp {
+    position: absolute;
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    font-size: 1.5rem;
+    color: var(--color-sage-green);
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+/* ========================================
+   END OF DAY REFLECTION
+   ======================================== */
+.reflection-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-warm-paper);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xl);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.reflection-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2xl);
+    max-width: 800px;
+}
+
+.ink-blossom-container {
+    position: relative;
+    border: 0.5px solid rgba(44, 44, 44, 0.2);
+    background: var(--color-pure-paper);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+}
+
+#inkBlossomCanvas {
+    display: block;
+    width: 256px;
+    height: 384px;
+}
+
+.gen-id {
+    position: absolute;
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    opacity: 0.4;
+    letter-spacing: 0.1em;
+}
+
+.reflection-text {
+    text-align: center;
+    max-width: 500px;
+}
+
+.reflection-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin-bottom: var(--space-lg);
+    color: var(--color-ink-black);
+}
+
+.reflection-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--color-sage-green);
+    line-height: var(--line-height-loose);
+    margin-bottom: var(--space-lg);
+}
+
+.quote-attribution {
+    display: block;
+    font-style: normal;
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-text);
+    margin-top: var(--space-sm);
+}
+
+.reflection-divider {
+    height: 0.5px;
+    width: 3rem;
+    background: var(--color-border);
+    margin: var(--space-lg) auto;
+}
+
+.reflection-note {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-soft-charcoal);
+    margin-bottom: var(--space-md);
+}
+
+.reflection-note strong {
+    color: var(--color-sage-green);
+    font-weight: 600;
+}
+
+.reflection-close-note {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-muted-text);
+    margin: var(--space-lg) 0;
+}
+
+.reflection-close-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--color-soft-charcoal);
+    margin-top: var(--space-xl);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.reflection-close-btn:hover {
+    color: var(--color-sage-green);
+    border-bottom-color: var(--color-sage-green);
+}
+
+/* ========================================
+   RESPONSIVE - ONBOARDING & REFLECTION
+   ======================================== */
+@media (max-width: 768px) {
+    .philosophy-paragraph {
+        font-size: 1.25rem;
+    }
+
+    .onboarding-question {
+        font-size: 1.5rem;
+    }
+
+    .reflection-content {
+        flex-direction: column;
+    }
+
+    .journal-card {
+        padding: var(--space-xl);
+    }
+}
