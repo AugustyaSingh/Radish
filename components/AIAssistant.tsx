@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Sparkles, X, RefreshCw } from "lucide-react"
+import { X, RefreshCw } from "lucide-react"
 import { getAITip, getAIFact, getAIMission } from "@/app/actions"
 
 type InsightType = 'TIP' | 'FACT' | 'MISSION'
@@ -94,8 +94,8 @@ export function AIAssistant() {
                                         key={type}
                                         onClick={() => fetchInsight(type)}
                                         className={`flex-1 py-2 px-3 font-pixel text-[8px] paper-border transition-all ${insightType === type
-                                                ? 'bg-primary text-primary-foreground'
-                                                : 'bg-muted text-muted-foreground hover:bg-primary/20'
+                                            ? 'bg-primary text-primary-foreground'
+                                            : 'bg-muted text-muted-foreground hover:bg-primary/20'
                                             }`}
                                     >
                                         {type}

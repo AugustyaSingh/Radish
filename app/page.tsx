@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Clock, Leaf, Droplets, Zap, Wind } from "lucide-react"
+import { Clock, Leaf, Droplets, Wind } from "lucide-react"
 
 // Floating particle component
 function FloatingParticle({ delay, x, y, icon }: { delay: number; x: number; y: number; icon: string }) {

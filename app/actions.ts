@@ -1,6 +1,6 @@
 'use server';
 
-import { getUser, updateUser, addAction, getUserActions, getLeaderboard, getCommunityPosts, addCommunityPost, User, Action, CommunityPost } from '@/lib/db';
+import { getUser, updateUser, addAction, getUserActions, getLeaderboard, getCommunityPosts, addCommunityPost, CommunityPost } from '@/lib/db';
 import { generateAIInsight, refineTasksWithAI, RefinedTask } from '@/lib/ai';
 
 // Action point values - Extended to include all action types
